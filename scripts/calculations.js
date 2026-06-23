@@ -1,8 +1,8 @@
-const budget = 0;
-let totalExpenses = 0;
+let budgetValue = 0;
+let totalExpensesValue = 0;
 let balanceColor = "green";
 
-const expenses = [
+const expenseEntries = [
   ["groceries", 33],
   ["restaurants", 50],
   ["transport", 12],
@@ -12,28 +12,28 @@ const expenses = [
   ["subscriptions", 12],
 ];
 
-expenses.forEach((expense) => {
-  totalExpenses += expense[1];
-  console.log("Valor total de los gastos: " + totalExpenses);
+expenseEntries.forEach((expense) => {
+  totalExpensesValue += expense[1];
+  console.log("Valor total de los gastos: " + totalExpensesValue);
 });
 
-console.log("Gastos totales:", totalExpenses);
+console.log("Gastos totales:", totalExpensesValue);
 
 function calculateAverageExpense() {
-  const average = totalExpenses / expenses.length;
+  const average = totalExpensesValue / expenseEntries.length;
 
-  expenses.length === 0
+  expenseEntries.length === 0
     ? (console.log("No hay gastos"), 0)
     : (console.log("Gasto promedio:", average), average);
 
-  return expenses.length === 0 ? 0 : average;
+  return expenseEntries.length === 0 ? 0 : average;
 }
 
 const averageExpense = calculateAverageExpense();
 console.log("Valor del gasto promedio:", averageExpense);
 
 function calculateBalance() {
-  const balance = budget - totalExpenses;
+  const balance = budgetValue - totalExpensesValue;
   console.log("Saldo calculado:", balance);
   return balance;
 }
@@ -46,7 +46,7 @@ function updateBalanceColor() {
 
   balance < 0
     ? ((balanceColor = "red"), console.log("Saldo negativo: red"))
-    : budget > 0 && balance < budget * 0.25
+    : budgetValue > 0 && balance < budgetValue * 0.25
       ? ((balanceColor = "orange"),
         console.log("Saldo < 25% presupuesto: orange"))
       : ((balanceColor = "green"), console.log("Saldo normal: green"));
@@ -58,7 +58,7 @@ function updateBalanceColor() {
 function calculateCategoryExpenses(category) {
   let categoryTotal = 0;
 
-  for (const expense of expenses) {
+  for (const expense of expenseEntries) {
     expense[0] === category
       ? ((categoryTotal += expense[1]),
         console.log(`Estadistica por categoria: ${expense[1]}`))
@@ -98,10 +98,10 @@ function calculateLargestCategory() {
 }
 
 function addExpenseEntry(newExpense) {
-  expenses.push(newExpense);
-  totalExpenses += newExpense[1];
+  expenseEntries.push(newExpense);
+  totalExpensesValue += newExpense[1];
 
   console.log(`Gasto añadido: ${newExpense[0]} - ${newExpense[1]}`);
-  console.log(`Total actual: ${totalExpenses}`);
+  console.log(`Total actual: ${totalExpensesValue}`);
   return newExpense;
 }
